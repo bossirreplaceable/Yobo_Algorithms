@@ -55,14 +55,15 @@ public class ResizeStack<T> implements Iterable<T> {
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
+            private int i=N;
             @Override
             public boolean hasNext() {
-                return N > 0;
+                return i > 0;
             }
 
             @Override
             public T next() {
-                return a[--N];
+                return a[--i];
             }
         };
     }

@@ -16,11 +16,19 @@ fun main() {
     stack.push(4)
     println("stackSize2=${stack.stackSize()}")
 
+    println("------------------------")
+    val iterator=stack.iterator()
+    while (iterator.hasNext()){
+        println("stack.item=${iterator.next()}")
+    }
+    println("------------------------")
+
     stack.pop()
     stack.pop()
     stack.pop()
     stack.pop()
     println("stackSize3=${stack.stackSize()}")
+
 
 
 }
