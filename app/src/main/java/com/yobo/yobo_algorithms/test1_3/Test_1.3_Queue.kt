@@ -13,15 +13,15 @@ fun main() {
     val stack: LinkedQueue<Int> = LinkedQueue()
 
     println("stackSize1=${stack.size()}")
-    stack.push(1)
-    stack.push(2)
-    stack.push(3)
-    stack.push(4)
+    stack.enqueue(1)
+    stack.enqueue(2)
+    stack.enqueue(3)
+    stack.enqueue(4)
     println("stackSize2=${stack.size()}")
-    println(stack.pop())
-    println(stack.pop())
-    println(stack.pop())
-    println(stack.pop())
+    println(stack.dequeue())
+    println(stack.dequeue())
+    println(stack.dequeue())
+    println(stack.dequeue())
     println("stackSize3=${stack.size()}")
 
 }
