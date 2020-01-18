@@ -5,6 +5,7 @@ import com.jimmysun.algorithms.chapter2_2.Merge;
 import com.jimmysun.algorithms.chapter2_3.Quick;
 import com.jimmysun.algorithms.chapter2_4.Heap;
 
+import edu.princeton.cs.algs4.InsertionX;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
@@ -13,6 +14,9 @@ public class SortCompare {
 		Stopwatch timer = new Stopwatch();
 		if (alg.equals("Insertion")) {
 			Insertion.sort(a);
+		}
+		if (alg.equals("InsertionX")) {
+			InsertionX.sort(a);
 		}
 		if (alg.equals("Selection")) {
 			Selection.sort(a);
@@ -53,13 +57,17 @@ public class SortCompare {
 	}
 
 	public static void main(String[] args) {
-		String alg1 = args[0];
-		String alg2 = args[1];
-		int N = Integer.parseInt(args[2]);
-		int T = Integer.parseInt(args[3]);
+		String alg1 = "Ex25";
+		String alg2 = "Insertion";
+		String alg3 = "InsertionX";
+		int N = 30000;
+		int T = 100;
 		double t1 = timeRandomInput(alg1, N, T);
 		double t2 = timeRandomInput(alg2, N, T);
+		double t3 = timeRandomInput(alg3, N, T);
 		StdOut.printf("For %d random Doubles\n  %s is", N, alg1);
 		StdOut.printf(" %.1f times faster than %s\n", t2 / t1, alg2);
+		StdOut.printf("For %d random Doubles\n  %s is", N, alg3);
+		StdOut.printf(" %.1f times faster than %s\n", t2 / t3, alg2);
 	}
 }
