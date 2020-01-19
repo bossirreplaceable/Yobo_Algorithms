@@ -1,4 +1,4 @@
-package com.yobo.yobo_algorithms.test2_2;
+package com.yobo.yobo_algorithms.test2_1;
 
 import edu.princeton.cs.algs4.StdOut;
 

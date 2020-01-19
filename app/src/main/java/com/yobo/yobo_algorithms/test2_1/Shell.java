@@ -1,4 +1,4 @@
-package com.yobo.yobo_algorithms.test2_2;
+package com.yobo.yobo_algorithms.test2_1;
 
 /**
  * Created by ZhangBoshi
@@ -13,14 +13,16 @@ public class Shell {
     private static int countInserrion = 0;
     private static int countInserrion1 = 0;
 
-    private static void sort(int[] a) {
+    /**
+     * 希尔排序   h=3x+1
+     */
+    public static void sort(double[] a) {
         int N = a.length;
         int h = 1;
-        // 3x+1 increment sequence: 1, 4, 13, 40, 121, 364, 1093, ...
+        // 3x+1 hment sequence: 1, 4, 13, 40, 121, 364, 1093, ...
         while (h < N / 3)
             h = 3 * h + 1;
         while (h >= 1) {
-            System.out.println("h=" + h);
             for (int i = h; i < N; i++) {
                 for (int j = i; j >= h; j -= h) {
                     count++;
@@ -36,22 +38,25 @@ public class Shell {
         }
     }
 
+    /**
+     * 希尔排序  h= N／2
+     */
     public static void shell_sort(int array[]) {
         int temp = 0;
         int N = array.length;
-        int incre = N;
+        int h = N;
 
-        while (true) {
-            incre = incre / 2;
-            System.out.println("hX=" + incre);
-            for (int k = 0; k < incre; k++) { // 根据增量分为若干子序列
-                for (int i = k + incre; i < N; i += incre) {
-                    for (int j = i; j > k; j -= incre) {
+        do {
+            h = h / 2;
+            System.out.println("hX=" + h);
+            for (int k = 0; k < h; k++) { // 根据增量分为若干子序列
+                for (int i = k + h; i < N; i += h) {
+                    for (int j = i; j > k; j -= h) {
                         countX++;
-                        if (array[j] < array[j - incre]) {
+                        if (array[j] < array[j - h]) {
                             countX1++;
-                            temp = array[j - incre];
-                            array[j - incre] = array[j];
+                            temp = array[j - h];
+                            array[j - h] = array[j];
                             array[j] = temp;
                         } else {
                             break;
@@ -59,12 +64,12 @@ public class Shell {
                     }
                 }
             }
-            if (incre == 1) {
-                break;
-            }
-        }
+        } while (h != 1);
     }
 
+    /**
+     * 插入排序
+     */
     public static void sortInserrion(int[] a) {
         for (int i = 1; i < a.length; i++) {
             for (int j = i; j > 0; j--) {
@@ -78,13 +83,17 @@ public class Shell {
             }
         }
     }
-
     private static void exch(int[] a, int i, int j) {
         int temp = a[i];
         a[i] = a[j];
         a[j] = temp;
     }
 
+    private static void exch(double[] a, int i, int j) {
+        double temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
     private static void show(int[] a) {
         System.out.println("\n");
         for (int item : a) {
@@ -95,7 +104,7 @@ public class Shell {
     public static void main(String[] args) {
         int[] a = { 55, 43, 23, 12, 13, 11, 7, 8, 88, 6, 4, 2, 3, 1, 9, 8, 7, 11, 56, 45, 22, 23,
                 45, 66 };
-        sort(a);
+//        sort(a);
         show(a);
         int[] b = { 55, 43, 23, 12, 13, 11, 7, 8, 88, 6, 4, 2, 3, 1, 9, 8, 7, 11, 56, 45, 22, 23,
                 45, 66 };
