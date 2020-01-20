@@ -11,7 +11,7 @@ public class Insertion {
     static int countX = 0;
     static int countY = 0;
 
-    public static void sort(int[] a) {
+    public static void sort(double[] a) {
         for (int i = 1; i < a.length; i++) {
             for (int j = i; j > 0; j--) {
                 if (a[j] < a[j - 1]) {
@@ -21,7 +21,6 @@ public class Insertion {
                     break;
                 }
             }
-            show(a);
         }
     }
 
@@ -70,6 +69,11 @@ public class Insertion {
         a[i] = a[j];
         a[j] = temp;
     }
+    private static void exch(double[] a, int i, int j) {
+        double temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
 
     private static void show(int[] a) {
         System.out.println("\n");
@@ -81,7 +85,7 @@ public class Insertion {
     public static void main(String[] args) {
         int[] a = {55,43,23,12,13,11,7,8,88 ,6,4,2,3,1,9,8,7,11,56,45,22,23,45,66};
         show(a);
-        sort(a);
+//        sort(a);
 //        System.out.println("\n-------------------------");
 //        int[] b = { 6,4,2,3,1,9,8,7};
 //        show(b);

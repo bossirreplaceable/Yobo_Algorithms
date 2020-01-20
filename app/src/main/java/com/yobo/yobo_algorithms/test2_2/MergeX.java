@@ -1,35 +1,32 @@
 package com.yobo.yobo_algorithms.test2_2;
 
-/**
- * Created by ZhangBoshi
- * on 2020-01-18
- */
 public class MergeX {
-
-    private static final int MIN = 7;
+    private static final int CUTOFF = 7;
 
     public static void sort(double[] a) {
-        double[] aux = a.clone();
+        double[] aux = (double[]) a.clone();
         sort(a, aux, 0, a.length - 1);
     }
 
     public static void sort(double[] a, double[] aux, int lo, int hi) {
-        if (hi <= lo + MIN) {
+        if (hi <= lo + CUTOFF) {
             sortInsertion(a, lo, hi);
-
-        }else {
+        } else {
             int mid = lo + (hi - lo) / 2;
-            sort(a, aux, lo, mid);
-            sort(a, aux, mid + 1, hi);
-            if (a[mid + 1] < a[mid]) {
+            sort(aux, a, lo, mid);
+            sort(aux, a, mid + 1, hi);
+            if (aux[mid + 1] > aux[mid]) {
+                System.arraycopy(aux, lo, a, lo, hi - lo + 1);
+            } else {
                 merge(a, aux, lo, mid, hi);
             }
+
         }
     }
 
     private static void sortInsertion(double[] a, int lo, int hi) {
-        for (int i = lo; i <= hi; i++) {
-            for (int j = i; j > 0; --j) {
+        for (int i = lo + 1; i <= hi; i++) {
+            for (int j = i; j > lo; j--) {
                 if (a[j] < a[j - 1]) {
                     exch(a, j, j - 1);
                 } else {
@@ -43,15 +40,16 @@ public class MergeX {
         int i = lo;
         int j = mid + 1;
 
-        for (int k = lo; k <= hi; k++) {
+        for (int k = lo; k <= hi; ++k) {
             if (i > mid)
                 a[k] = aux[j++];
             else if (j > hi)
                 a[k] = aux[i++];
-            else if (aux[i] < aux[j])
-                a[k] = aux[i++];
-            else
+            else if (aux[j] < aux[i]) {
                 a[k] = aux[j++];
+            } else {
+                a[k] = aux[i++];
+            }
         }
     }
 
@@ -64,7 +62,7 @@ public class MergeX {
     private static void show(double[] a) {
         System.out.println("\n");
         for (double item : a) {
-            System.out.print((int)item + ",");
+            System.out.print((int) item + ",");
         }
     }
 

@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 
 public class Ex11 {
-	private static int CUTOFF = 15;
+	private static int CUTOFF = 7;
 
 	public static void merge(Comparable[] src, Comparable[] dest, int lo, int mid, int hi) {
 		int i = lo, j = mid + 1;
@@ -74,9 +74,9 @@ public class Ex11 {
 	}
 
 	public static void main(String[] args) {
-		String[] a = new In().readAllStrings();
+		Double[] a = { 55d, 43d, 23d, 12d, 13d, 11d, 7d, 8d, 88d, 6d, 4d, 2d, 3d, 1d, 9d, 8d, 7d,
+				11d, 56d, 45d, 22d, 23d, 45d, 66d };
 		sort(a);
-		assert isSorted(a);
 		show(a);
 	}
 }

@@ -1,7 +1,9 @@
 package com.yobo.yobo_algorithms.test2_2;
 
 import com.jimmysun.algorithms.chapter1_4.Stopwatch;
+import com.yobo.yobo_algorithms.test2_1.Insertion;
 import com.yobo.yobo_algorithms.test2_1.Shell;
+import com.yobo.yobo_algorithms.test2_3.QuickInsertion;
 
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
@@ -13,19 +15,19 @@ public class SortCompare {
 			Merge.sort(a);
 		}
 		if (alg==2) {
-			MergeBU.sort(a);
+			MergeX.sort(a);
 		}
 		if (alg==3){
-			MergeInsertion.sort(a);
+			QuickInsertion.sort(a);
 		}
 		if (alg==4){
 			Shell.sort(a);
 		}
 		if (alg==5){
-			MergeX.sort(a);
+			MergeX1.sort(a);
 		}
 		if (alg==6){
-			MergeX1.sort(a);
+			Insertion.sort(a);
 		}
 		return timer.elapsedTime();
 	}
@@ -35,15 +37,22 @@ public class SortCompare {
 		double[] a = new double[N];
 		for (int t = 0; t < T; t++) {
 			for (int i = 0; i < N; i++) {
-				a[i] = StdRandom.uniform();
+				a[i] = StdRandom.uniform()*10000;
 			}
 			total += time(alg, a);
 		}
 		return total;
 	}
 
+	private static void show(double[] a) {
+		System.out.println("\n");
+		for (double item : a) {
+			System.out.println(String.format("%6.2f",item) );
+		}
+	}
+
 	public static void main(String[] args) {
-		int N = 40000;
+		int N = 60000;
 		int T = 100;
 		double t1 = timeRandomInput(1, N, T);
 		double t2 = timeRandomInput(2, N, T);

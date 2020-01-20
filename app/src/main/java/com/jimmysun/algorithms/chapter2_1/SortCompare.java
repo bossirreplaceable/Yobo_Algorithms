@@ -1,11 +1,12 @@
 package com.jimmysun.algorithms.chapter2_1;
 
 import com.jimmysun.algorithms.chapter1_4.Stopwatch;
-import com.jimmysun.algorithms.chapter2_2.Merge;
 import com.jimmysun.algorithms.chapter2_3.Quick;
 import com.jimmysun.algorithms.chapter2_4.Heap;
 
 import edu.princeton.cs.algs4.InsertionX;
+import edu.princeton.cs.algs4.Merge;
+import edu.princeton.cs.algs4.MergeX;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
@@ -24,8 +25,14 @@ public class SortCompare {
 		if (alg.equals("Shell")) {
 			Shell.sort(a);
 		}
+		if (alg.equals("MergeX")) {
+			MergeX.sort(a);
+		}
 		if (alg.equals("Merge")) {
 			Merge.sort(a);
+		}
+		if (alg.equals("MergeX1")) {
+			MergeX.sort(a);
 		}
 		if (alg.equals("Quick")) {
 			Quick.sort(a);
@@ -34,9 +41,7 @@ public class SortCompare {
 			Heap.sort(a);
 		}
 		// Exercise 2.1.24
-		if (alg.equals("Ex24")) {
-			Ex24.sort(a);
-		}
+
 		// Exercise 2.1.25
 		if (alg.equals("Ex25")) {
 			Ex25.sort(a);
@@ -57,9 +62,9 @@ public class SortCompare {
 	}
 
 	public static void main(String[] args) {
-		String alg1 = "Ex25";
-		String alg2 = "Insertion";
-		String alg3 = "InsertionX";
+		String alg1 = "Merge";
+		String alg2 = "MergeX";
+		String alg3 = "MergeX1";
 		int N = 30000;
 		int T = 100;
 		double t1 = timeRandomInput(alg1, N, T);

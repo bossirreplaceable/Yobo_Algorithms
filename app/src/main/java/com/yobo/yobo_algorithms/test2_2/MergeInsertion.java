@@ -32,8 +32,8 @@ public class MergeInsertion {
         }
     }
     private static void sortInsertion(double[] a, int lo, int hi) {
-        for (int i = lo; i <=hi; i++) {
-            for (int j = i; j > 0; j--) {
+        for (int i = lo+1; i <=hi; i++) {
+            for (int j = i; j > lo; j--) {
                 if (a[j] < a[j - 1]) {
                     exch(a, j, j - 1);
                 } else {
@@ -68,7 +68,7 @@ public class MergeInsertion {
     private static void show(double[] a) {
         System.out.println("\n");
         for (double item : a) {
-            System.out.print(item + ",");
+            System.out.print((int)item + ",");
         }
     }
 

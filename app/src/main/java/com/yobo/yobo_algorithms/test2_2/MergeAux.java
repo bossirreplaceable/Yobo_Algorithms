@@ -46,7 +46,7 @@ public class MergeAux {
     private static void show(double[] a) {
         System.out.println("\n");
         for (double item : a) {
-            System.out.print(item + ",");
+            System.out.print((int)item + ",");
         }
     }
 
