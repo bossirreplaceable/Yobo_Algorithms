@@ -15,7 +15,7 @@ public class QuickInsertion {
 
     public static void sort(double[] a, int lo, int hi) {
         if (lo+ MIN>= hi) {
-            sortInsertion1(a,lo,hi);
+            sortInsertion(a,lo,hi);
         }else {
             int mid = partition(a, lo, hi);
             sort(a, lo, mid - 1);
@@ -40,25 +40,12 @@ public class QuickInsertion {
 //        show(a);
         return right;
     }
-    public static void sortInsertion1(double[] a, int lo, int hi) {
-//        System.out.println("lo=" + lo + ",hi=" + hi);
+    private static void sortInsertion(double[] a, int lo, int hi) {
         for (int i = lo + 1; i < hi; i++) {
             for (int j = i; j > lo; j--) {
-//                System.out.println("i=" + i + ",j=" + j);
                 if ( a[j]< a[j-1]) {
                     exch(a, j, j - 1);
                 }else {
-                    break;
-                }
-            }
-        }
-    }
-    private static void sortInsertion(double[] a, int lo, int hi) {
-        for (int i = lo; i <= hi; i++) {
-            for (int j = i; j > 0; --j) {
-                if (a[j] < a[j - 1]) {
-                    exch(a, j, j - 1);
-                } else {
                     break;
                 }
             }
@@ -85,5 +72,4 @@ public class QuickInsertion {
         sort(a);
         show(a);
     }
-
 }
