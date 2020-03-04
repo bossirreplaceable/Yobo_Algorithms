@@ -8,24 +8,21 @@ import org.jetbrains.annotations.Nullable;
  */
 public class DepthFirstPaths {
 
-    private boolean[] marked;//这个顶点上调用过dfs()了
+    private boolean[] marked;//标记走过的点
     private int[] edgeTo;//从起点到一个顶点的已知路径的最后一个顶点
-    private int count;
     private int s; //起点
 
     public DepthFirstPaths(Graph g, int s) {
         marked = new boolean[g.V()];
         edgeTo=new int[g.V()];
         this.s=s;
-
     }
 
     public void dfs(Graph G, int v) {
         marked[v] = true;
-        count++;
         for (int w : G.adj(v)) {
             if (!hasPathTo(w)) {
-                edgeTo[w]=v;
+                edgeTo[w]=v; //记录w点前一个点是v，这样就能通过edgeTo倒退来找回整条路径
                 dfs(G, w);
             }
         }
@@ -35,11 +32,9 @@ public class DepthFirstPaths {
         return marked[w];
     }
 
-    public int count() {
-        return count;
-    }
-
-    @Nullable
+    /**
+     * 从v点出发，不断倒退，找到从起点到v点的路径
+     */
     public Iterable<Integer> pathTo(int v){
 
         if (!hasPathTo(v)) return null;
