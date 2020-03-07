@@ -9,12 +9,12 @@ import com.yobo.yobo_algorithms.test4_1.Stack;
 public class DirectedCycle {
 
 
-    private boolean[] marked;
-    private boolean[] onStack;
-    private int[] edge;
+    private final boolean[] marked;
+    private final boolean[] onStack;
+    private final int[] edge;
     private Stack<Integer> cycle;
 
-    public DirectedCycle(Digraph D,int s) {
+    public DirectedCycle(Digraph D) {
 
         marked=new boolean[D.V()];
         onStack=new boolean[D.V()];
