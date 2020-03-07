@@ -10,10 +10,9 @@ import edu.princeton.cs.algs4.Stack;
 public class DepthFirstOrder {
 
     private final boolean[] marked;
-    private final Queue<Integer> pre;
-    private final Queue<Integer> post;
-    private final Stack<Integer> reversePost;
-
+    private final Queue<Integer> pre; //前序
+    private final Queue<Integer> post; //后序
+    private final Stack<Integer> reversePost; //逆后序
 
     public DepthFirstOrder(Digraph D) {
 
@@ -32,20 +31,19 @@ public class DepthFirstOrder {
     private void dfs(Digraph D, int v) {
 
         marked[v] = true;
-        pre.enqueue(v);
+        pre.enqueue(v);               //在递归调用之前将顶点加入队列。
         for (int w : D.adj(v)) {
             if (!marked(w)) {
                 dfs(D, w);
             }
         }
-        post.enqueue(v);
-        reversePost.push(v);
+        post.enqueue(v);               //在递归调用之后将顶点加入队列。
+        reversePost.push(v);           //在递归调用之后将顶点压入栈。
     }
 
     private boolean marked(int w) {
         return marked[w];
     }
-
     public Iterable<Integer> pre(){
         return pre;
     }
@@ -55,6 +53,4 @@ public class DepthFirstOrder {
     public Iterable<Integer> reversePost(){
         return reversePost;
     }
-
-
 }

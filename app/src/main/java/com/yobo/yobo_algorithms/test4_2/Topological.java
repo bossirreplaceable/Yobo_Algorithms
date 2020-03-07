@@ -11,14 +11,11 @@ public class Topological {
     public Topological(Digraph D) {
 
         DirectedCycle cycle = new DirectedCycle(D);
-
         if (!cycle.hasCycle()) {
             DepthFirstOrder depthFirstOrder = new DepthFirstOrder(D);
             this.order = depthFirstOrder.reversePost();
         }
-
     }
-
     public Iterable<Integer> order(){
         return order;
     }

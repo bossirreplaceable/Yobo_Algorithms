@@ -32,6 +32,7 @@ public class BreadthFirstSearch {
             for (int w : G.adj(v)) {//3、然后检查该点0时候还有其他相邻点（0-1、0-2、0-3）
                 if (!marked[w]) {//4、如果有将每个顶点（1、2、3）加入到队列中
                     edgeTo[w] = v;
+                    marked[w]=true;
                     queue.enqueue(w);//5、将每个顶点都加入到队头中，然后进行下一次循环
                 }
             }
