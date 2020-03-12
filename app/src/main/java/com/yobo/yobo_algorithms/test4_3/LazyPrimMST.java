@@ -9,9 +9,9 @@ import edu.princeton.cs.algs4.Queue;
  */
 public class LazyPrimMST {
 
-    private boolean[] marked;
-    private Queue<Edge> mst;
-    private MinPQ<Edge> pq;
+    private boolean[] marked; //判断是否已经走过该点
+    private Queue<Edge> mst; //存储最小生成树的边
+    private MinPQ<Edge> pq; //优先队列，每次从队列中取出最短的边
 
     public LazyPrimMST(EdgeWeightedGraph G) {
 
@@ -22,13 +22,13 @@ public class LazyPrimMST {
         visit(G,0);
         while (!pq.isEmpty()){
 
-            Edge e=pq.delMin();
+            Edge e=pq.delMin(); //取出最短的边
             int v=e.either();
             int w=e.other(v);
-            if (marked[v]&&marked[w]) continue;
+            if (marked[v]&&marked[w]) continue;//如果边的两个顶点走过了就进行下一次循环
             mst.enqueue(e);
 
-            if (!marked[v]) visit(G,v);
+            if (!marked[v]) visit(G,v); //将没有放入优先队列的边添加进去
             if (!marked[w]) visit(G,w);
         }
     }
@@ -41,10 +41,7 @@ public class LazyPrimMST {
             }
         }
     }
-
     private Iterable<Edge> mst() {
         return mst;
     }
-
-
 }

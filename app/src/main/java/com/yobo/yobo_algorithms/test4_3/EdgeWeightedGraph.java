@@ -47,5 +47,4 @@ public class EdgeWeightedGraph {
         }
         return edges;
     }
-
 }

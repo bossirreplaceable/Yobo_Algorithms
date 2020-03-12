@@ -19,13 +19,10 @@ public class Edge implements  Comparable<Edge> {
     public double weight() {
         return weight;
     }
-
     public int either() {
         return v;
     }
-
     public int other(int vertex){
-
         if (vertex==v) return w;
         else if (vertex==w) return v;
         else return 0; //这里应该抛出异常
