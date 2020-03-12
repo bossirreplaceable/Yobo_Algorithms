@@ -1,6 +1,5 @@
 package com.yobo.yobo_algorithms.test4_3;
 
-import java.util.Iterator;
 
 import edu.princeton.cs.algs4.MinPQ;
 import edu.princeton.cs.algs4.Queue;
