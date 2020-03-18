@@ -8,8 +8,9 @@ import java.util.Random;
  */
 public class MSD {
 
-    private static int R = 127; //基数，字符的最大数值
-    private static String aux[]; //辅助数组
+    private static int R = 127; // 基数，字符的最大数值
+    private static String aux[]; // 辅助数组
+    private static int M = 15;
 
     public static void sort(String[] a) {
         int N = a.length;
@@ -18,30 +19,55 @@ public class MSD {
     }
 
     private static void sort(String[] a, int lo, int hi, int d) {
-
-        if (hi <= lo)
-            return;
-        int[] count = new int[R + 2];
-        // 第一步：频率统计
-        for (int i = lo; i <= hi; i++) {
-            count[charAt(a[i], d) + 2]++;
-        }
-        // 第二步：频率转换成索引
-        for (int r = 0; r < R + 1; r++) {
-            count[r + 1] += count[r];
-        }
-        // 第三步：数据分组排序,前面count+2，这里count+1
-        for (int i = lo; i <= hi; i++) {
-            aux[count[charAt(a[i], d) + 1]++] = a[i];
-        }
-        // 第四步：回写排序好的数据
-        for (int i = lo; i <= hi; i++) {
-            a[i] = aux[i - lo];
-        }
-        for (int r = 0; r < R; r++) {
-            sort(a, lo + count[r], lo + count[r + 1] - 1, d + 1);
+        if (hi <= lo + M) {
+            insertion(a, lo, hi, d);
+        } else {
+            int[] count = new int[R + 2];
+            // 第一步：频率统计
+            for (int i = lo; i <= hi; i++) {
+                count[charAt(a[i], d) + 2]++;
+            }
+            // 第二步：频率转换成索引
+            for (int r = 0; r < R + 1; r++) {
+                count[r + 1] += count[r];
+            }
+            // 第三步：数据分组排序,前面count+2，这里count+1
+            for (int i = lo; i <= hi; i++) {
+                aux[count[charAt(a[i], d) + 1]++] = a[i];
+            }
+            // 第四步：回写排序好的数据
+            for (int i = lo; i <= hi; i++) {
+                a[i] = aux[i - lo];
+            }
+            for (int r = 0; r < R; r++) {
+                sort(a, lo + count[r], lo + count[r + 1] - 1, d + 1);
+            }
         }
     }
+    private static void insertion(String[] a, int lo, int hi, int d) {
+        for (int i = lo + 1; i <= hi; i++) {
+            for (int j = i; j > lo; j--) {
+
+                if (less(a[j], a[j - 1], d)) {
+                    String temp = a[j];
+                    a[j] = a[j - 1];
+                    a[j - 1] = temp;
+                }
+            }
+        }
+    }
+    private static boolean less(String v, String w, int d) {
+        for (int i = d; i < Math.min(v.length(), w.length()); ++i) {
+            if (v.charAt(i) < w.charAt(i)) {
+                return true;
+            }
+            if (v.charAt(i) > w.charAt(i)) {
+                return false;
+            }
+        }
+        return v.length() < w.length();
+    }
+
     /**
      * 如果该字符串的第d个字符为null，那么我们就需要将
      */
@@ -68,6 +94,7 @@ public class MSD {
             System.out.println(" " + s);
         }
     }
+
     /**
      * 随机生成指定长的字符串
      */
